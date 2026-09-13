@@ -54,13 +54,13 @@ const faqs = [
   ["Are my belongings insured?", "Transit insurance is available for added protection. We explain the coverage options before your move begins."],
 ];
 
-function Brand() {
+function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
     <a href="#top" className="flex items-center gap-3" aria-label="VRL Cargo home">
       <span className="brand-mark"><Truck size={26} strokeWidth={2.4} /></span>
       <span className="leading-none">
-        <strong className="block font-display text-2xl font-extrabold text-primary">VRL <span className="text-accent">CARGO</span></strong>
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Packers & Movers</span>
+        <strong className={`block font-display text-2xl font-extrabold ${inverse ? "text-primary-foreground" : "text-primary"}`}>VRL <span className="text-accent">CARGO</span></strong>
+        <span className={`text-[10px] font-bold uppercase tracking-[0.2em] ${inverse ? "text-hero-muted" : "text-muted-foreground"}`}>Packers & Movers</span>
       </span>
     </a>
   );
@@ -93,7 +93,7 @@ function QuoteForm({ compact = false }: { compact?: boolean }) {
         <option value="">Select service</option>
         {services.map((service) => <option key={service.title}>{service.title}</option>)}
       </select>
-      <button type="submit" className="button-accent group">Get free quote <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></button>
+      <button type="submit" className={`${compact ? "button-primary" : "button-accent"} group`}>Get free quote <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" /></button>
     </form>
   );
 }
@@ -208,7 +208,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8"><div className="mb-7 flex flex-col justify-between gap-2 md:flex-row md:items-end"><div><p className="text-xs font-bold uppercase tracking-[0.18em]">Ready when you are</p><h2 className="mt-2 font-display text-3xl font-extrabold md:text-4xl">Get your free moving estimate.</h2></div><div className="flex items-center gap-1"><Star size={17} fill="currentColor" /><Star size={17} fill="currentColor" /><Star size={17} fill="currentColor" /><Star size={17} fill="currentColor" /><Star size={17} fill="currentColor" /><span className="ml-2 text-sm font-semibold">Trusted by families across India</span></div></div><QuoteForm compact /></div>
       </section>
 
-      <footer className="bg-primary pb-24 pt-12 text-primary-foreground md:pb-10"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-5 md:flex-row md:items-end lg:px-8"><div><Brand /><p className="mt-5 max-w-sm text-sm leading-6 text-hero-muted">Safe packing, secure transport and reliable relocation for homes and businesses across India.</p></div><div className="text-sm text-hero-muted"><p className="font-bold text-primary-foreground">Call 24×7: +91 93503 59213</p><p className="mt-2">© 2026 VRL Cargo Packers & Movers</p></div></div></footer>
+      <footer className="bg-primary pb-24 pt-12 text-primary-foreground md:pb-10"><div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 px-5 md:flex-row md:items-end lg:px-8"><div><Brand inverse /><p className="mt-5 max-w-sm text-sm leading-6 text-hero-muted">Safe packing, secure transport and reliable relocation for homes and businesses across India.</p></div><div className="text-sm text-hero-muted"><p className="font-bold text-primary-foreground">Call 24×7: +91 93503 59213</p><p className="mt-2">© 2026 VRL Cargo Packers & Movers</p></div></div></footer>
 
       <div className="mobile-actions"><a href={`tel:${phone}`}><Phone size={19} /> Call now</a><a href={`https://wa.me/${phone.replace('+','')}?text=Hello%20VRL%20Cargo,%20I%20need%20a%20moving%20quote`} target="_blank" rel="noreferrer"><PackageCheck size={19} /> WhatsApp</a></div>
     </main>
